@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Lost Ark Daily Tracker</title>
+		<title>BimmoLA</title>
+		<!--<meta http-equiv="refresh" content="60" > -->
 	</head>
+
 	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<footer>
-    		<ul>
-        		<li><a href="https://github.com/Bimmo1">github.com/Bimmo1</a></li>
-			</ul>
-		</footer>
+		<h1>Bimmo</h1>
+		<div id="DailyTable" align="left" >
+		<h3 align="left">Daily</h3>
+		<table cellspacing="3" border="1">
+			<tr>
+				<th>&nbsp;</th>
+				<th>Main</th>
+				<th>Alt1</th>
+				<th>Alt2</th>
+			</tr>
+			<tr>
+				<th>Chaos Dungeon</th>
+				<td><input type="checkbox", name="ChaosDungeon">
+					<input type="checkbox", name="ChaosDungeon">
+				</td>
+				<td><input type="checkbox", name="ChaosDungeon">
+					<input type="checkbox", name="ChaosDungeon">
+				</td>
+				<td><input type="checkbox", name="ChaosDungeon">
+					<input type="checkbox", name="ChaosDungeon">
+				</td>
+			</tr>
+		</table>
+		</div>
+		<p>
+			Reset in <span id='resetclockhour'></span> hours and <span id='resetclockminute'></span> minutes<br>
+		</p>
+		<script>
+			const resetTime = [5, 0, 0];
+			let dt = new Date();
+			let localTime = dt.toLocaleTimeString();
+			 
+			const timeSegment = localTime.split(":");
+			let hour = timeSegment[0];
+			let minute = timeSegment[1];
+			let second = timeSegment[2];
+
+			let resetHour = resetTime[0]- Number(hour);
+			let resetMinute = 60 - Number(minute);
+			let HourAdded;
+			if (resetMinute > 0) {
+				HourAdded = 23;
+			} else {
+				HourAdded = 24;
+			}
+			document.getElementById("resetclockhour").innerHTML = resetHour+HourAdded;
+			document.getElementById("resetclockminute").innerHTML = resetMinute;
+		</script>
 	</body>
 </html>
